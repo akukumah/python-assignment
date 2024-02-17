@@ -1,0 +1,2 @@
+#this_will_print_the_zen_of_python
+import this
