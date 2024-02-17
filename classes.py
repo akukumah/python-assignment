@@ -296,6 +296,11 @@ class Battery:
             range= 225
         print(f"Your car can go about {range} miles on full charge") 
 
+    def upgrade_batter(self):
+        """ Check the battery size and set the capacitor to 65 if it isn't""" 
+        if self.battery_size != 65:
+            capacitor = 65   
+
 
 
 
@@ -312,10 +317,10 @@ my_vehicle.battery.get_range()
 #9.6 Icecream stand as a child class and Restaurant the parent class
 class Icecream_stand(Restaurant):
     """An attempt to model an ice cream stand"""
-    def __init__(self, restaurant_name, cuisine_type,**flavors):
+    def __init__(self, restaurant_name, cuisine_type):
         """initiliazing attributes from parent class,Restaurant"""
         super().__init__(restaurant_name, cuisine_type) 
-        self.flavors = flavors
+        
         
 
     def get_flavors(self):
@@ -341,10 +346,78 @@ class Flavors:
 ice_cream= Icecream_stand("icycup","Fresh yougourt") 
 ##accesing the method from  parent class
 ice_cream.descibe_restaurant()        
-
-
-
 fal= Flavors("vanilla","scrawbery","chocolate")
-fal.get_flavors()
 
 
+
+
+
+
+
+    
+#9.8
+#creating a privilege class and then calling it in the Admin class
+class Privileges:
+    """A simple attempt to model privilages admins are entiled to"""
+
+    def __init__(self,*privileges):
+        "Initilize the parameter"
+        self.privileges= privileges
+
+    def show_privileges( self):
+        """Shows the privileges the admin is enetilted to """
+        print(f"{self.privileges}")     
+
+
+
+##9.7 Adnim 
+#i will create a child class that inherites it's attributes from the parent class 
+class Admin(user):
+    """An attempt to model a administrator"""
+    def __init__(self, first_name, last_name):
+        """Initializing attritutes from parent class User"""
+        super().__init__(first_name, last_name)
+        self.privileges= Privileges()
+
+
+ #instance 
+admin = Admin("John", "Doe")
+admin.privileges = Privileges("can add post", "can delete post", "can ban user")
+admin.privileges.show_privileges()
+    
+ 
+
+#9.9 battery upgrade 
+
+#i wiil do a composition in here
+class Battery:
+    """A simple attempt to discribe the car's battery size"""
+    def __init__(self,battery=40):
+        """initializing the paranmeter"""
+        self.battery_size= battery
+    def discribe_battery(self):
+        """Prints the battery size"""    
+        print(f"Your car has a {self.battery_size}-KWH battery.")
+
+    def get_range(self):
+        """prints statemet about the range the a battery can over"""
+        if self.battery_size == 40:
+            range= 150
+        elif self.battery_size == 65:
+            range= 225
+        print(f"Your car can go about {range} miles on full charge") 
+
+    def upgrade_battery(self):
+        """ Check the battery size and set the capacitor to 65 if it isn't""" 
+        if self.battery_size != 65:
+            self.battery_size= 65
+            capacitor = 65   
+
+
+##instance 
+myElectric= Electric_car("toyota","pickup",2025)
+myElectric.battery.discribe_battery()
+myElectric.battery.get_range()
+##now i will upgrade the battery and check the range again
+myElectric.battery.upgrade_battery()
+myElectric.battery.get_range()##after upgrading the battery the range changed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
