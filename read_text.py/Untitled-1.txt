@@ -1,0 +1,5 @@
+in python you can auotmate everthing.
+in python you can simulate things.
+in python you can you can visualise data 
+in python you can you can read files into memory and wrok with it.
+in python you can you can generate data
